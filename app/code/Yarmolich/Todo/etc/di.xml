@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TasksGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Yarmolich\Todo\Model\ResourceModel\Todo\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">TasksGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+
+    <!-- Create our type DepartmentGridFilterPool -->
+    <virtualType name="TasksGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Type for jobs_department_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="tasks_listing_data_source" xsi:type="string">Yarmolich\Todo\Model\ResourceModel\Grid\Todo\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Simulate our class Maxime\Jobs\Model\ResourceModel\Grid\Department\Collection -->
+    <virtualType name="Yarmolich\Todo\Model\ResourceModel\Grid\Todo\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">yarmolich_todo</argument>
+            <argument name="resourceModel" xsi:type="string">Yarmolich\Todo\Model\ResourceModel\Todo</argument>
+        </arguments>
+    </virtualType>
+</config>

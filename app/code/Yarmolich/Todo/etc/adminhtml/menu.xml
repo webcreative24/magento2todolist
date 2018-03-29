@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Yarmolich_Todo::todo" title="Manage Tasks" module="Yarmolich_Todo" sortOrder="10" action="todo/todo" resource="Yarmolich_Todo::todo"/>
+    </menu>
+</config>
