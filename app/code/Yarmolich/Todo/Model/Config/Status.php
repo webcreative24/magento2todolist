@@ -12,11 +12,11 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Status implements ArrayInterface
 {
-    public $arrStatuses = array(
+    public $arrStatuses = [
         1 => "TODO",
         2 => "In Progress",
         3 => "Done",
-    );
+    ];
 
     /**
      * Return array of options as value-label pairs
