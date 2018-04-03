@@ -23,7 +23,7 @@
             <argument name="name" xsi:type="string">tasks_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">todo_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
-
+            
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
@@ -125,25 +125,17 @@
             </filterInput>
         </filters>
         <!-- Mass action -->
-        <massaction name="listing_massaction">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">todo_listing.todo_listing.tasks_columns.ids</item>
-                    <item name="indexField" xsi:type="string">todo_id</item>
-                </item>
-            </argument>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
             <action name="delete">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">delete</item>
-                        <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="todo/todo/massDelete"/>
-                        <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete items</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
-                        </item>
-                    </item>
-                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="todo/todo/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
             </action>
         </massaction>
         <!-- Paging -->
@@ -180,14 +172,10 @@
             </item>
         </argument>
         <!-- Add columns with checkboxes -->
-        <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">todo_id</item>
-                </item>
-            </argument>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>todo_id</indexField>
+            </settings>
         </selectionsColumn>
         <!-- ID Column -->
         <column name="todo_id">
