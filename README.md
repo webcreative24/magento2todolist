@@ -1,6 +1,5 @@
 # Magento 2 TODO Mudule #
 
-Developer imdeveloper@yandex.ru
 
 ## Installation ##
 ### Clone or donwload repository and copy to your Magento folder ###
